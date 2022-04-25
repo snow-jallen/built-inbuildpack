@@ -1,4 +1,5 @@
 {
+    "description": "Demo app for CS 1415 Lab 15",
     "buildpacks": [
         {"url": "https://github.com/jincod/dotnetcore-buildpack"}
     ]

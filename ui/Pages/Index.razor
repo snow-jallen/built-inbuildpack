@@ -8,15 +8,23 @@
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<p>@history</p>
 
 @code
 {
     MazeCell startLocation = MazeUtilities.mazeFor("Jonathan");
-    
+    string history;
 
     protected override void OnInitialized()
     {
+        MazeCell currentLocation = startLocation;
+        MazeCell nextLocation = currentLocation?.North ?? currentLocation?.East ?? currentLocation?.South ?? currentLocation.West;;
 
+        while (nextLocation != startLocation)
+        {
+            nextLocation = currentLocation?.North ?? currentLocation?.East ?? currentLocation?.South ?? currentLocation.West;
+            history+=$"From {currentLocation.Id} to {nextLocation.Id}<br/>";
+            currentLocation = nextLocation;
+        }
     }
 }
