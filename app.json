@@ -7,6 +7,10 @@
         "PROJECT_FILE": {
             "description": "Path to the project file",
             "value": "ui/ui.csproj"
+        },
+        "PROJECT_NAME": {
+            "description": "Name of the project",
+            "value": "ui"
         }
     }
 }
