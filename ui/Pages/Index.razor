@@ -1,0 +1,22 @@
+﻿@page "/"
+@using labyrinth
+
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code
+{
+    MazeCell startLocation = MazeUtilities.mazeFor("Jonathan");
+    
+
+    protected override void OnInitialized()
+    {
+
+    }
+}
