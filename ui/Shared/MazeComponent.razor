@@ -1,56 +1,46 @@
-﻿@page "/"
 @using labyrinth
-@inject ILogger<Index> logger
+@inject ILogger<MazeComponent> logger;
 
+<h1>@Title</h1>
 
-<PageTitle>Index</PageTitle>
+<div class="row">
+<button class="btn btn-primary col-auto" @onclick=generate>Generate</button>
+</div>
+<div class="row">
+<MermaidJS.Blazor.MermaidDiagram Definition=@String.Join("\n", nodes) />
+</div>
 
-
-<h1>Enter your name</h1>
-<input @bind="YourName" type="text" class="w-100" />
-
-<CascadingValue Value=YourName>
-    <MazeComponent Title="Simple Maze" />
-</CascadingValue>
-
-<h2>Twisty Maze</h2>
-<MermaidJS.Blazor.MermaidDiagram Definition=@String.Join("\n", twistyDiagram) />
 <label>Solution:
-    <input @bind=twistySolution />
+    <input @bind=solution />
 </label>
-<button @onclick=solveTwisty>Solve</button>
-@if(twistySolved)
+<button @onclick=solve>Solve</button>
+@if (solved)
 {
     <h1>You win!</h1>
 }
 
 @code
-{    
-    List<string> simpleDiagram = new();
-    List<string> twistyDiagram = new();
-    public string YourName{get;set;} = "TODO: Put your name here";
-    string simpleSolution = "";
-    bool simpleSolved = false;
-    bool twistySolved = false;
-    string twistySolution = "";
+{
+    [Parameter]
+    public string Title { get; set; }
+
+    [CascadingParameter]
+    public string MazeSeed { get; set; }
+
+    List<string> nodes = new();
+    string solution;
+    bool solved = false;
+    void solve()
+    {
+
+    }
 
     void generate()
     {
-        simpleDiagram = takeStep(MazeUtilities.mazeFor(YourName));
-        twistyDiagram = takeStep(MazeUtilities.twistyMazeFor(YourName));
+        nodes = takeStep(MazeUtilities.mazeFor(MazeSeed));
     }
 
-    void solveSimple()
-    {
-        simpleSolved = MazeUtilities.isPathToFreedom(MazeUtilities.mazeFor(YourName), simpleSolution);
-    }
-
-    void solveTwisty()
-    {
-        twistySolved = MazeUtilities.isPathToFreedom(MazeUtilities.twistyMazeFor(YourName), twistySolution);
-    }
-
-    List<string> takeStep(MazeCell cell)
+     List<string> takeStep(MazeCell cell)
     {
         var visited = new List<MazeLink>();
         List<string> diagram = new();

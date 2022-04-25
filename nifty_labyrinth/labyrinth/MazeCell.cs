@@ -38,5 +38,17 @@ public class MazeCell
         return $"{Id}{symbol}";
     }
 
+    // public override bool Equals(object? obj)
+    // {
+    //     return obj is MazeCell cell &&
+    //            Id == cell.Id &&
+    //            WhatsHere == cell.WhatsHere;
+    // }
+
+    // public override int GetHashCode()
+    // {
+    //     return HashCode.Combine(Id, WhatsHere, North?.Id, South?.Id, East?.Id, West?.Id);
+    // }
+
     private static int NextCellId = 0;
 }
