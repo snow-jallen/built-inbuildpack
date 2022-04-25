@@ -1,5 +1,8 @@
 namespace labyrinth;
 
+public enum MazeType { Regular, Twisty }
+
+
 public enum Item
 {
     Nothing,
@@ -10,7 +13,7 @@ public enum Item
 
 /**
  * Type representing a cell in a maze.
- */ 
+ */
 public class MazeCell
 {
     public MazeCell()

@@ -10,19 +10,9 @@
 <input @bind="YourName" type="text" class="w-100" />
 
 <CascadingValue Value=YourName>
-    <MazeComponent Title="Simple Maze" />
+    <MazeComponent Title="Simple Maze" MType="MazeType.Regular" />
+    <MazeComponent Title="Twisty Maze" MType="MazeType.Twisty" />
 </CascadingValue>
-
-<h2>Twisty Maze</h2>
-<MermaidJS.Blazor.MermaidDiagram Definition=@String.Join("\n", twistyDiagram) />
-<label>Solution:
-    <input @bind=twistySolution />
-</label>
-<button @onclick=solveTwisty>Solve</button>
-@if(twistySolved)
-{
-    <h1>You win!</h1>
-}
 
 @code
 {    

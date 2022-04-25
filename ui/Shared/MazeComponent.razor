@@ -21,6 +21,10 @@
 
 @code
 {
+
+    [Parameter]
+    public MazeType MType{get;set;
+    }
     [Parameter]
     public string Title { get; set; }
 
@@ -45,7 +49,6 @@
         var visited = new List<MazeLink>();
         List<string> diagram = new();
         diagram.Add("graph TD");
-        diagram.Add("start");
 
         takeStep(cell, visited, diagram);
 
